@@ -67,6 +67,7 @@ Let’s then edit the layout page:
 notepad src\main\resources\templates\fragments\layout.html
 ```
 
+Paste the below snippet within the HTML **head** section after all the **meta** tags
 ```javascript
 <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
 <script>
@@ -84,6 +85,25 @@ Rebuild the deployment jar file and then restart the **start-app.cmd**
 ```cmd
 .\mvnw package -Dmaven.test.skip
 ```
+
+## Update the Open Telemetry Collector configuration to export application logs
+
+The Collector configuration is a YAML file  which specifies the behavior of the different components and services. By default, it’s stored in C:\ProgramData\Splunk\OpenTelemetry Collector\agent_config.yaml.
+
+The HEC export configuration is defined in the snippet below
+
+```
+splunk_hec:
+token: "${SPLUNK_HEC_TOKEN}"
+endpoint: "${SPLUNK_HEC_URL}"
+source: "otel"
+sourcetype: "otel"
+index: "main"
+profiling_data_enabled: false
+```
+
+Instead of updating environment variables directly in the configuration file (although you can if you want to), based on the specified installation parameters for MSI installer, the environment variables are sourced from the registry key - HKLM:\SYSTEM\CurrentControlSet\Services\splunk-otel-collector and set on the Environment entry.
+![regedit](./regedit.png)
 
 ## Build petclinic docker image
 
