@@ -102,8 +102,28 @@ index: "main"
 profiling_data_enabled: false
 ```
 
-Instead of updating environment variables directly in the configuration file (although you can if you want to), based on the specified installation parameters for MSI installer, the environment variables are sourced from the registry key - HKLM:\SYSTEM\CurrentControlSet\Services\splunk-otel-collector and set on the Environment entry.
+Instead of updating environment variables directly in the configuration file (although you can if you want to), based on the specified installation parameters for MSI installer, the environment variables are sourced from the following registry key
+
+Registry Key Path:
+```
+HKLM:\SYSTEM\CurrentControlSet\Services\splunk-otel-collector .
+```
+
+Registry Key Name:
+```
+Environment
+```
+
+Registry Key Values:
+
+```properties
+SPLUNK_HEC_URL=
+SPLUNK_HEC_TOKEN=
+```
+
 ![regedit](./regedit.png)
+
+Restart splunk-otel-collector service for changes to take effect.
 
 ## Build petclinic docker image
 
