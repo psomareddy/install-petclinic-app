@@ -29,6 +29,14 @@ Invoke-WebRequest -Uri https://github.com/signalfx/splunk-otel-java/releases/lat
 
 ## Running petclinic locally
 
+Create a startup script
+
+```cmd
+notepad start-app.cmd
+```
+
+Copy and paste the following contents into the **start-app**.cmd file
+
 ```cmd
 set OTEL_SERVICE_NAME=petclinic
 set OTEL_RESOURCE_ATTRIBUTES=deployment.environment=dev,version=1.1.0
