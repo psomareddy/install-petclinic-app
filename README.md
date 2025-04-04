@@ -47,6 +47,12 @@ set JAVA_OPTIONS="-javaagent:.\\splunk-otel-javaagent.jar"
 java %JAVA_OPTIONS% -jar .\\target\\spring-petclinic-3.4.0-SNAPSHOT.jar
 ```
 
+Execute start-app.cmd
+
+```cmd
+start-app.cmd
+```
+
 You can then access petclinic here: http://localhost:8080/
 
 ## Build petclinic docker image
