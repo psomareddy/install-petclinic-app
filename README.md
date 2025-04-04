@@ -16,7 +16,7 @@ git clone https://github.com/spring-projects/spring-petclinic.git
 
 ```cmd
 cd spring-petclinic
-./mvnw package -Dmaven.test.skip
+.\mvnw package -Dmaven.test.skip
 ```
 
 Build artifact are built is target/spring-petclinic-{version}-SNAPSHOT.jar 
