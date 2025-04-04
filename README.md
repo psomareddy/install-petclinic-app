@@ -55,6 +55,36 @@ start-app.cmd
 
 You can then access petclinic here: http://localhost:8080/
 
+## Enable Browser (Real User Monitoring) Instrumentation
+
+The Spring PetClinic application uses a single HTML page as the "layout" page, that is reused across all pages of the
+application. This is the perfect location to insert the Splunk RUM Instrumentation Library as it will be loaded in all
+pages automatically
+
+Let’s then edit the layout page:
+
+```cmd
+notepad src\main\resources\templates\fragments\layout.html
+```
+
+```javascript
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
+<script>
+    SplunkRum.init({
+        realm: "us1",
+        rumAccessToken: "REPLACE_WITH_YOUR RUM_TOKEN",
+        applicationName: "petclinic",
+        deploymentEnvironment: "dev"
+    });
+</script>
+```
+
+Rebuild the deployment jar file and then restart the **start-app.cmd**
+
+```cmd
+.\mvnw package -Dmaven.test.skip
+```
+
 ## Build petclinic docker image
 
 ```cmd
