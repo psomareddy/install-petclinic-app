@@ -5,7 +5,7 @@
 ## Understanding the Spring Petclinic application with a few diagrams
 <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
 
-## Building petclinic locally
+## Building petclinic package
 PetClinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/). You can build a jar file and run it from the command line (it should work just as well with Java 11 or newer):
 
 
@@ -27,7 +27,7 @@ Build artifact are built is target/spring-petclinic-{version}-SNAPSHOT.jar
 Invoke-WebRequest -Uri https://github.com/signalfx/splunk-otel-java/releases/latest/download/splunk-otel-javaagent.jar -OutFile splunk-otel-javaagent.jar
 ```
 
-## Running petclinic locally
+## Running petclinic application
 
 Create a startup script
 
