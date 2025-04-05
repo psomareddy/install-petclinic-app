@@ -27,7 +27,7 @@ Execute the followig powershell script to download the Otel Java Instrumentation
 Invoke-WebRequest -Uri https://github.com/signalfx/splunk-otel-java/releases/latest/download/splunk-otel-javaagent.jar -OutFile splunk-otel-javaagent.jar
 ```
 
-## 4. Run PetClinic Application (locally on Windows)
+## 4. Run PetClinic Application (locally on Windows) with OpenTelemetry APM Instrumentation
 
 Create a startup script
 
@@ -86,7 +86,9 @@ Rebuild the deployment jar file and then restart the **start-app.cmd**
 .\mvnw package -Dmaven.test.skip
 ```
 
-## 6. Update the Open Telemetry Collector configuration to export application logs
+# Appendix
+
+## A. Update the Open Telemetry Collector configuration to export application logs
 
 The Collector configuration is a YAML file  which specifies the behavior of the different components and services. By default, it’s stored in C:\ProgramData\Splunk\OpenTelemetry Collector\agent_config.yaml.
 
@@ -125,7 +127,8 @@ SPLUNK_HEC_TOKEN=
 
 Restart splunk-otel-collector service for changes to take effect.
 
-## 7. Create Docker Image
+
+## B. Create Docker Image
 
 Create the Dockerfile from the snippet below
 
@@ -155,7 +158,7 @@ Execute the following command to build the image
 docker build -t petclinic-app . -f Dockerfile
 ```
 
-## 8. Create and Run PetClinic Docker Container
+## C. Create and Run PetClinic Docker Container
 
 ```cmd
 docker run --name petclinic -d -p 8080:8080 petclinic-app:latest -e OTEL_SERVICE_NAME="petclinic" -e OTEL_RESOURCE_ATTRIBUTES"deployment.environment=dev" -e OTEL_EXPORTER_OTLP_ENDPOINT="http://host.docker.internal:4318" 
